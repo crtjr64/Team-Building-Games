@@ -1,0 +1,53 @@
+﻿
+    <script src='https://statics.teams.cdn.office.net/sdk/v2.0.0/js/MicrosoftTeams.min.js'></script>
+    <button onclick="(document.getElementById('icon').src = '/images/iconGray.png'); colorClickGray()">Select Gray</button>
+    <img id="icon" src="/images/teamsIcon.png" alt="icon" style="width:100px" />
+    <button onclick="(document.getElementById('icon').src = '/images/iconRed.png'); colorClickRed()">Select Red</button>
+
+    <script>
+        app.initialize();
+        let saveGray = () => {
+            pages.config.registerOnSaveHandler((saveEvent) => {
+                const configPromise = pages.config.setConfig({
+                    websiteUrl: "https://yourWebsite.com",
+                    contentUrl: "https://yourWebsite.com/gray",
+                    entityId: "grayIconTab",
+                    suggestedDisplayName: "MyNewTab"
+                });
+                configPromise.
+                    then((result) => { saveEvent.notifySuccess() }).
+                    catch((error) => { saveEvent.notifyFailure("failure message") });
+            });
+        }
+
+        let saveRed = () => {
+            pages.config.registerOnSaveHandler((saveEvent) => {
+                const configPromise = pages.config.setConfig({
+                    websiteUrl: "https://yourWebsite.com",
+                    contentUrl: "https://yourWebsite.com/red",
+                    entityId: "redIconTab",
+                    suggestedDisplayName: "MyNewTab"
+                });
+                configPromise.
+                    then((result) => { saveEvent.notifySuccess(); }).
+                    catch((error) => { saveEvent.notifyFailure("failure message") });
+            });
+        }
+
+        let gr = document.getElementById("gray").style;
+        let rd = document.getElementById("red").style;
+
+        const colorClickGray = () => {
+            gr.display = "block";
+            rd.display = "none";
+            pages.config.setValidityState(true);
+            saveGray()
+        }
+
+        const colorClickRed = () => {
+            rd.display = "block";
+            gr.display = "none";
+            pages.config.setValidityState(true);
+            saveRed();
+        }
+    </script>
