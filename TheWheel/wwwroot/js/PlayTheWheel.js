@@ -19,7 +19,7 @@ function initializeTeams() {
         return console.error(err.toString());
     });
 
-    }
+}
 
 initializeTeams();
 
@@ -51,14 +51,6 @@ gamePlay = (function () {
     let loseMoney = new Audio('/sound/bankrupt.wav');
     let lostTurn = new Audio('/sound/LoseTurn.mp3');
     let wrong = new Audio('/sound/WrongAnswer.mp3');
-
-    //function FPIWofTeam(name, id, current) {
-    //    this.name = name;
-    //    this.turnCnt = 0;
-    //    this.currentTeam = current;
-    //    this.id = id;
-    //}
-
 
     function TeamsContext(id, name) {
         this.id = id;
@@ -718,11 +710,8 @@ gamePlay = (function () {
                         this.readyToSpin = false;
                         // Disable the spin button so can't click again while wheel is spinning.
                         //document.getElementById('spin_button').src = "TheWheel/spin_off.png";
-
-
-                        //-->document.getElementById('spin_button').className = "";
-
                         theWheel.animation.stopAngle = stopat;
+
                         // Begin the spin animation by calling startAnimation on the wheel object.
                         theWheel.startAnimation();
 
@@ -1010,11 +999,9 @@ gamePlay = (function () {
         };
 
         var mainVueApp = Vue.createApp(vueinstance);
-
         vuevm = mainVueApp.mount("#theWheelContainer");
 
         loadWheel();
-        //return vuevm;
 
         ///END InitBoard Function
     }
@@ -1024,10 +1011,7 @@ gamePlay = (function () {
         vuevm.createTeam(team);
     }
 
-
     // Loads the tick audio sound in to an audio object.
-    
-
     // This function is called when the sound is to be played.
     function playSound() {
         // Stop and rewind the sound if it already happens to be playing.
@@ -1045,11 +1029,6 @@ gamePlay = (function () {
         theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
         // Re-set the wheel angle to 0 degrees.
         theWheel.draw();                // Call draw to render changes to the wheel.
-
-        //document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
-        //document.getElementById('pw2').className = "";
-        //document.getElementById('pw3').className = "";
-
         wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
     }
 
@@ -1068,11 +1047,8 @@ gamePlay = (function () {
             vuevm.setPrizeOnWheel(-1);
             vuevm.setCurrentTeam();
         } else {
-            //alert("You have won " + indicatedSegment.text);
-            //WheelVal.value = "$ " + indicatedSegment.text;
             vuevm.setPrizeOnWheel(indicatedSegment.text);
             WheelVal.setAttribute('data-val', indicatedSegment.text);
-            //document.getElementById("thewheel").style.display = "none";
         }
 
         resetWheel();
@@ -1104,15 +1080,7 @@ gamePlay = (function () {
         initTheGameBoard: initTheGameBoard,
         createVuejsTeam: createVuejsTeam,
         messageUsers: messageUsers
-        //spinwheel: spinwheel,
-        //hideWheel: hideWheel,
-        //guessLetter: guessLetter,
-        //showPuzzle: showPuzzle,
-        //loadTheGame: loadTheGame,
-        //loadNewGame: loadNewGame,
-        //loadNewMatch: loadNewMatch,
-        //createTeam: createTeam,
-        //closeTeamsAdd: closeTeamsAdd
+
     };
 
     return gamePlayApi;
